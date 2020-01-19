@@ -1,22 +1,30 @@
 $(document).ready(function(){
+
 	setInterval(function(){
 		updateUserList();	
 		updateUnreadMessageCount();	
-	}, 60000);	
+	}, 6000);
+
 	setInterval(function(){
 		showTypingStatus();
 		updateUserChat();			
 	}, 5000);
+
 	$(".messages").animate({ 
 		scrollTop: $(document).height() 
 	}, "fast");
+
+
 	$(document).on("click", '#profile-img', function(event) { 	
 		$("#status-options").toggleClass("active");
 	});
+
+
 	$(document).on("click", '.expand-button', function(event) { 	
 		$("#profile").toggleClass("expanded");
 		$("#contacts").toggleClass("expanded");
 	});	
+
 	$(document).on("click", '#status-options ul li', function(event) { 	
 		$("#profile-img").removeClass();
 		$("#status-online").removeClass("active");
@@ -37,6 +45,8 @@ $(document).ready(function(){
 		};
 		$("#status-options").removeClass("active");
 	});	
+
+
 	$(document).on('click', '.contact', function(){		
 		$('.contact').removeClass('active');
 		$(this).addClass('active');
@@ -45,11 +55,15 @@ $(document).ready(function(){
 		$(".chatMessage").attr('id', 'chatMessage'+to_user_id);
 		$(".chatButton").attr('id', 'chatButton'+to_user_id);
 	});	
+
+
 	$(document).on("click", '.submit', function(event) { 
 		var to_user_id = $(this).attr('id');
 		to_user_id = to_user_id.replace(/chatButton/g, "");
 		sendMessage(to_user_id);
 	});
+
+
 	$(document).on('focus', '.message-input', function(){
 		var is_type = 'yes';
 		$.ajax({
@@ -57,9 +71,12 @@ $(document).ready(function(){
 			method:"POST",
 			data:{is_type:is_type, action:'update_typing_status'},
 			success:function(){
+
 			}
 		});
 	}); 
+
+
 	$(document).on('blur', '.message-input', function(){
 		var is_type = 'no';
 		$.ajax({
@@ -69,8 +86,10 @@ $(document).ready(function(){
 			success:function() {
 			}
 		});
-	}); 		
+	}); 
 }); 
+
+
 function updateUserList() {
 	$.ajax({
 		url:"chat_action.php",
@@ -92,6 +111,8 @@ function updateUserList() {
 		}
 	});
 }
+
+
 function sendMessage(to_user_id) {
 	message = $(".message-input input").val();
 	$('.message-input input').val('');
@@ -104,12 +125,15 @@ function sendMessage(to_user_id) {
 		data:{to_user_id:to_user_id, chat_message:message, action:'insert_chat'},
 		dataType: "json",
 		success:function(response) {
+			console.log(response);
 			var resp = $.parseJSON(response);			
 			$('#conversation').html(resp.conversation);				
 			$(".messages").animate({ scrollTop: $('.messages').height() }, "fast");
 		}
 	});	
 }
+
+
 function showUserChat(to_user_id){
 	$.ajax({
 		url:"chat_action.php",
@@ -123,6 +147,8 @@ function showUserChat(to_user_id){
 		}
 	});
 }
+
+
 function updateUserChat() {
 	$('li.contact.active').each(function(){
 		var to_user_id = $(this).attr('data-touserid');
@@ -131,12 +157,14 @@ function updateUserChat() {
 			method:"POST",
 			data:{to_user_id:to_user_id, action:'update_user_chat'},
 			dataType: "json",
-			success:function(response){				
+			success:function(response){	
 				$('#conversation').html(response.conversation);			
 			}
 		});
 	});
 }
+
+
 function updateUnreadMessageCount() {
 	$('li.contact').each(function(){
 		if(!$(this).hasClass('active')) {
@@ -155,6 +183,8 @@ function updateUnreadMessageCount() {
 		}
 	});
 }
+
+
 function showTypingStatus() {
 	$('li.contact.active').each(function(){
 		var to_user_id = $(this).attr('data-touserid');

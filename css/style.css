@@ -14,9 +14,8 @@
 }
 
 #frame {
-  width: 95%;
-  min-width: 360px;
-  max-width: 1000px;
+  width: 100%;
+  
   height: 92vh;
   min-height: 300px;
   max-height: 720px;
@@ -400,9 +399,9 @@
   background: #e74c3c;
 }
 #frame #sidepanel #contacts ul li.contact .wrap span.unread {
-   background:red;  
-   position: relative;
-   left: 5px;
+ background:red;  
+ position: relative;
+ left: 5px;
 }
 #frame #sidepanel #contacts ul li.contact .wrap img {
   width: 40px;
@@ -673,53 +672,61 @@
   outline: none;
 }
 ol, ul {
-    list-style: none;
+  list-style: none;
 }
 .fa {
-    display: inline-block;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    font: normal normal normal normal normal normal normal 1 FontAwesome;
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font: normal normal normal normal normal normal normal 1 FontAwesome;
 }
 #frame .content .message-input .wrap .attachment {
-    position: absolute;
-    right: 60px;
-    z-index: 4;
-    margin-top: 10px;
-    font-size: 1.1em;
-    color: #435f7a;
-    opacity: .5;
-    cursor: pointer;
+  position: absolute;
+  right: 60px;
+  z-index: 4;
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #435f7a;
+  opacity: .5;
+  cursor: pointer;
 }
 #frame .content .message-input .wrap button {
-    float: right;
-    border: none;
-    width: 50px;
-    padding: 12px 0;
-    cursor: pointer;
-    background: #32465a;
-    color: #f5f5f5;
+  float: right;
+  border: none;
+  width: 50px;
+  padding: 12px 0;
+  cursor: pointer;
+  background: #32465a;
+  color: #f5f5f5;
 }
 .isTyping {
 	font-size:12px;	
 }
 .badge-notify {
-    background: red;
-    position: relative;
-    top: -20px;
-    left: -35px;
+  background: red;
+  position: relative;
+  top: -20px;
+  left: -35px;
 }
 .badge {
-    display: inline-block;
-    min-width: 10px;
-    padding: 3px 7px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1;
-    vertical-align: baseline;
-    white-space: nowrap;
-    text-align: center;
-    background-color: #999;
-    border-radius: 10px;
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  background-color: #999;
+  border-radius: 10px;
+}
+
+.modal-dialog {
+  width: 400px;
+  margin: 30px auto;  
+}
+ul {
+  padding: 0;
 }
